@@ -39,6 +39,145 @@
 
   <link rel="stylesheet" type="text/css" href="style-mobile.25fc5.css"/>
   <link rel="icon" href="favicon.8de18.ico"/>
+
+
+
+
+  
+  <script 
+    async 
+    src="https://tganalytics.xyz/index.js" 
+    onload="initAnalytics()" 
+    type="text/javascript"
+  ></script>
+  <script>
+      function initAnalytics() {
+          // console.log("✅ Telegram Analytics SDK 已加载");
+          // window.telegramAnalytics.init({
+          //     token: 'eyJhcHBfbmFtZSI6IkRhZ291U29rb2JhbiIsImFwcF91cmwiOiJodHRwczovL3QubWUvQmVzdE9ubGluZUdhbWVCb3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9saXBhbjQ3Ni5naXRodWIuaW8vU29rb2JhbkdhbWUvIn0=!rTMu+CulbxbCCsqYSoyqtivjzv4BX5bLay3NbYHVMug=', // 这里填入 "Your token for recording"
+          //     appName: 'SokobanGame', // 你的游戏名称
+          // });
+
+          if (window.telegramAnalytics) {
+            console.log("✅ Telegram Analytics SDK 已加载");
+            window.telegramAnalytics.init({
+                token: 'eyJhcHBfbmFtZSI6IkZydWl0U3RhY2siLCJhcHBfdXJsIjoiaHR0cHM6Ly90Lm1lL0ZydWl0U3RhY2tfYm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vc2h1aWd1b2R1aWR1aWR1aS52ZXJjZWwuYXBwLyJ9!GK7AYZ1tTtsAG8P79KymBL7hFOm+xhmBQlIbG0SYeT0=', // 这里填入 "Your token for recording"
+                appName: 'FruitStack', // 你的游戏名称
+            });
+        } else {
+            console.error("❌ Telegram Analytics SDK 未加载！");
+        }
+      }
+  </script>
+  
+  
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    if (window.Telegram?.WebApp) {
+      const tg = Telegram.WebApp;
+      tg.expand(); // 强制全屏显示
+      tg.enableClosingConfirmation(); // 防止误关闭
+      //console.log("User:", tg.initDataUnsafe.user?.id); // 获取用户信息
+
+      // 添加返回按钮
+      const backBtn = document.createElement('button');
+      backBtn.textContent = 'Back to Bot';
+      backBtn.style.position = 'fixed';
+      backBtn.style.top = '10px';
+      backBtn.style.left = '10px';
+      backBtn.style.zIndex = 9999;
+      backBtn.onclick = () => tg.close();
+      document.body.appendChild(backBtn);
+    } else {
+      alert("Please open this game inside Telegram!");
+    }
+  </script>
+
+
+
+
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+  // Firebase 配置（使用你提供的信息）
+  const firebaseConfig = {
+    apiKey: "AIzaSyB3VMg3XN01pHMVUDiqr2Nl4CRbJEHw2Bs",
+    authDomain: "fruitduiduidui.firebaseapp.com",
+    projectId: "fruitduiduidui",
+    storageBucket: "fruitduiduidui.firebasestorage.app",
+    messagingSenderId: "219063246977",
+    appId: "1:219063246977:web:4fa4aba35034d5b5802d80"
+  };
+
+  // 初始化 Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+
+
+  // 提供全局函数供游戏调用
+  window.submitScore = function (playerId, playerInfo, newScore) {
+  const playerRef = db.ref("leaderboard/" + playerId);
+
+  playerRef.once("value").then((snapshot) => {
+    const existingData = snapshot.val();
+    const currentScore = existingData?.score || 0;
+
+    if (newScore > currentScore) {
+      playerRef.set({
+        nickName: playerInfo.nickName || 'Anonymous',
+        avatarUrl: playerInfo.avatarUrl || '',
+        score: newScore,
+        time: Date.now()
+      });
+      //console.log("🎉 更新分数成功！");
+    } else {
+      //console.log("⬇️ 新分数较低，不更新。");
+    }
+  });
+};
+
+
+  window.loadTopScores = function (callback) {
+  const db = firebase.database();
+  const scoresRef = db.ref("leaderboard");
+
+  scoresRef
+    .orderByChild("score")
+    .limitToLast(100)
+    .once("value", (snapshot) => {
+      const result = [];
+
+      snapshot.forEach((childSnapshot) => {
+        const entry = childSnapshot.val();
+        const playerId = childSnapshot.key; // ✅ 这是你要的 playerId
+
+        result.push({
+          playerId,       // 添加 playerId 字段
+          playerInfo:{
+    nickName: entry.nickName,
+            avatarUrl: entry.avatarUrl,
+    },
+          score: entry.score,
+          time: entry.time
+        });
+      });
+
+      result.reverse(); // Firebase 默认升序 → 降序
+      if (callback) callback(result);
+    });
+};
+
+
+</script>
+
+
+
+  
 </head>
 <body>
   <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
@@ -48,9 +187,9 @@
     </div>
   </div>
 
-<script src="src/settings.69f05.js" charset="utf-8"></script>
+<script src="src/settings.1b52d.js" charset="utf-8"></script>
 
-<script src="main.26e20.js" charset="utf-8"></script>
+<script src="main.57a27.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 (function () {
