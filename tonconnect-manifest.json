@@ -1,0 +1,5 @@
+{
+  "url": "https://shuiguoduiduidui.vercel.app/", // 将此替换为你的 Mini App 的实际 URL
+  "name": "Fruit Stack", // 你的游戏名称
+  "iconUrl": "https://your-game-domain.com/icon.png" // 你的游戏图标的完整 URL，建议使用PNG格式
+}
