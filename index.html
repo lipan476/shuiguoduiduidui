@@ -42,11 +42,14 @@
 
 
 
-  <!-- ✅ TON Connect SDK -->
-  <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+
 
 
   
+
+  <!-- ✅ TON Connect SDK -->
+  <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+
   <script 
     async 
     src="https://tganalytics.xyz/index.js" 
@@ -55,24 +58,25 @@
   ></script>
   <script>
       function initAnalytics() {
-          //
-          if (typeof TonConnectSDK === 'undefined') {
-              console.error("❌ TON Connect SDK 未加载！");
-              return;
+    //
+    if (typeof TonConnectSDK === 'undefined') {
+          console.error("❌ TON Connect SDK 未加载！");
+          return;
           }
-          
 
-
-
+    //
           if (window.telegramAnalytics) {
-            window.tonConnect = new TonConnectSDK.TonConnect();
-            window.tonConnect.restoreConnection().then(() => {
-                console.log("✅ TON 钱包连接成功");
+  
+      //
+      window.tonConnect = new TonConnectSDK.TonConnect();
+      window.tonConnect.restoreConnection().then(() => {
+              console.log("✅ TON 钱包连接成功");
             }).catch((e) => {
-                console.warn("⚠️ TON 钱包未连接", e);
+          console.warn("⚠️ TON 钱包未连接", e);
             });
 
-            //
+
+      //
             console.log("✅ Telegram Analytics SDK 已加载");
             window.telegramAnalytics.init({
                 token: 'eyJhcHBfbmFtZSI6IkZydWl0U3RhY2siLCJhcHBfdXJsIjoiaHR0cHM6Ly90Lm1lL0ZydWl0U3RhY2tCb3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9zaHVpZ3VvZHVpZHVpZHVpLnZlcmNlbC5hcHAvIn0=!3rQvmVK5tFs858hFkSYy4vBhCo+60HepDNX6qM0ZRB8=', // 这里填入 "Your token for recording"
@@ -85,7 +89,7 @@
   </script>
   
   
-
+  
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     if (window.Telegram?.WebApp) {
@@ -191,6 +195,9 @@
 
 
 
+
+
+
   
 </head>
 <body>
@@ -201,9 +208,9 @@
     </div>
   </div>
 
-<script src="src/settings.c41f6.js" charset="utf-8"></script>
+<script src="src/settings.15d6e.js" charset="utf-8"></script>
 
-<script src="main.218af.js" charset="utf-8"></script>
+<script src="main.0da50.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 (function () {
