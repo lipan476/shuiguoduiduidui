@@ -45,7 +45,6 @@
 
 
   
-
   <!-- ✅ TON Connect SDK -->
   <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
 
@@ -66,11 +65,16 @@
     //
           if (window.telegramAnalytics) {
   
-      //
-      window.tonConnect = new TonConnectSDK.TonConnect({
+      //window.tonConnect = new TonConnectSDK.TonConnect({
+        //manifestUrl: 'https://github.com/lipan476/shuiguoduiduidui/blob/main/tonconnect-manifest.json'
+//
+  //    });
+      const tonConnect = new TonConnectSDK.TonConnect({
         manifestUrl: 'https://github.com/lipan476/shuiguoduiduidui/blob/main/tonconnect-manifest.json'
+
       });
-      window.tonConnect.restoreConnection().then(() => {
+      window.TonConnectSDK = TonConnectSDK;
+      tonConnect.restoreConnection().then(() => {
               console.log("✅ TON 钱包连接成功");
             }).catch((e) => {
           console.warn("⚠️ TON 钱包未连接", e);
@@ -208,9 +212,9 @@
     </div>
   </div>
 
-<script src="src/settings.dd01b.js" charset="utf-8"></script>
+<script src="src/settings.0ec4e.js" charset="utf-8"></script>
 
-<script src="main.006e8.js" charset="utf-8"></script>
+<script src="main.7d208.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 (function () {

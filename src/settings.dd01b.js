@@ -1,1 +1,0 @@
-window._CCSettings={platform:"web-mobile",groupList:["default"],collisionMatrix:[[true]],hasResourcesBundle:true,hasStartSceneBundle:false,remoteBundles:[],subpackages:[],launchScene:"db://assets/ballballball/scenes/frituSortStartScene.fire",orientation:"portrait",jsList:[],bundleVers:{internal:"52d36",resources:"fcbc9",main:"4d7b8"}};
