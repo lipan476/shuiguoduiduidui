@@ -67,7 +67,9 @@
           if (window.telegramAnalytics) {
   
       //
-      window.tonConnect = new TonConnectSDK.TonConnect();
+      window.tonConnect = new TonConnectSDK.TonConnect({
+        manifestUrl: 'https://github.com/lipan476/shuiguoduiduidui/blob/main/tonconnect-manifest.json'
+      });
       window.tonConnect.restoreConnection().then(() => {
               console.log("✅ TON 钱包连接成功");
             }).catch((e) => {
@@ -196,7 +198,6 @@
 
 
 
-
   
 </head>
 <body>
@@ -207,9 +208,9 @@
     </div>
   </div>
 
-<script src="src/settings.84181.js" charset="utf-8"></script>
+<script src="src/settings.dd01b.js" charset="utf-8"></script>
 
-<script src="main.d63f6.js" charset="utf-8"></script>
+<script src="main.006e8.js" charset="utf-8"></script>
 
 <script type="text/javascript">
 (function () {
