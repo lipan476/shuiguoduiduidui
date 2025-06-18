@@ -42,6 +42,9 @@
 
 
 
+  <!-- ✅ TON Connect SDK -->
+  <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+
 
   
   <script 
@@ -52,13 +55,24 @@
   ></script>
   <script>
       function initAnalytics() {
-          // console.log("✅ Telegram Analytics SDK 已加载");
-          // window.telegramAnalytics.init({
-          //     token: 'eyJhcHBfbmFtZSI6IkRhZ291U29rb2JhbiIsImFwcF91cmwiOiJodHRwczovL3QubWUvQmVzdE9ubGluZUdhbWVCb3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9saXBhbjQ3Ni5naXRodWIuaW8vU29rb2JhbkdhbWUvIn0=!rTMu+CulbxbCCsqYSoyqtivjzv4BX5bLay3NbYHVMug=', // 这里填入 "Your token for recording"
-          //     appName: 'SokobanGame', // 你的游戏名称
-          // });
+          //
+          if (typeof TonConnectSDK === 'undefined') {
+              console.error("❌ TON Connect SDK 未加载！");
+              return;
+          }
+          
+
+
 
           if (window.telegramAnalytics) {
+            window.tonConnect = new TonConnectSDK.TonConnect();
+            window.tonConnect.restoreConnection().then(() => {
+                console.log("✅ TON 钱包连接成功");
+            }).catch((e) => {
+                console.warn("⚠️ TON 钱包未连接", e);
+            });
+
+            //
             console.log("✅ Telegram Analytics SDK 已加载");
             window.telegramAnalytics.init({
                 token: 'eyJhcHBfbmFtZSI6IkZydWl0U3RhY2siLCJhcHBfdXJsIjoiaHR0cHM6Ly90Lm1lL0ZydWl0U3RhY2tCb3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9zaHVpZ3VvZHVpZHVpZHVpLnZlcmNlbC5hcHAvIn0=!3rQvmVK5tFs858hFkSYy4vBhCo+60HepDNX6qM0ZRB8=', // 这里填入 "Your token for recording"
